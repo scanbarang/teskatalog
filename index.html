@@ -412,7 +412,7 @@ function tampilkan(data){
   <div class="card" onclick='detail(${JSON.stringify(p)})'>
     <img loading="lazy"
          src="${foto(p.foto)}"
-         onerror="this.src='images/noimage.jpg'">
+         onerror="this.onerror=null;this.src='images/noimage.jpg'"
 
     <div class="card-body">
       <div class="brand">${p.brand||""}</div>
