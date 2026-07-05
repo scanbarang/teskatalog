@@ -620,12 +620,16 @@ function filterKategori(k, el = null) {
 /* Login otomatis jika sudah pernah login */
 
 window.onload = function(){
-  if(localStorage.getItem("ufo_login")=="true"){
+  window.addEventListener("load", function () {
+  if (localStorage.getItem("ufo_login") == "true") {
     const box = document.getElementById("loginBox");
-    if(box) box.style.display = "none";
+    if (box) box.style.display = "none";
 
-    loadProduk();
+    if (typeof loadProduk === "function") {
+      loadProduk();
+    }
   }
+});
 }
 </script>
   <footer class="footer">
