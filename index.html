@@ -340,7 +340,10 @@ let semuaProduk=[];
 let settingData={};
 let bannerData=[];
 
-const foto=f=>"https://ufokebonsarimalang.github.io/KATALOGUFOKEBONSARI/images/"+f;
+const foto = f => {
+  if (!f) return "images/noimage.jpg";
+  return "images/" + f;
+};
 const rupiah=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n||0);
 const slug=p=>((p.brand||"")+"-"+(p.tipe||"")).toLowerCase().replace(/[^a-z0-9]+/g,"-");
 
