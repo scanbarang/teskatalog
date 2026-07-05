@@ -350,8 +350,7 @@ const slug=p=>((p.brand||"")+"-"+(p.tipe||"")).toLowerCase().replace(/[^a-z0-9]+
 async function loadProduk(){
 
  try{
-
-  const cache=localStorage.getItem("ufo_cache");
+const cache = localStorage.getItem("ufo_cache_v1");
 
   if(cache){
     const c = JSON.parse(cache);
@@ -412,7 +411,7 @@ function tampilkan(data){
   <div class="card" onclick='detail(${JSON.stringify(p)})'>
     <img loading="lazy"
          src="${foto(p.foto)}"
-         onerror="this.onerror=null;this.src='images/noimage.jpg'"
+         onerror="this.onerror=null;this.src='images/noimage.jpg'">
 
     <div class="card-body">
       <div class="brand">${p.brand||""}</div>
