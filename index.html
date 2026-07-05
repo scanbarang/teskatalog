@@ -401,11 +401,15 @@ function tampilkan(data){
   if(p.status==="PROMO") badge='<span class="status promo">🔥PROMO</span>';
   if(p.status==="BESTSELLER") badge='<span class="status best">⭐BESTSELLER</span>';
 
-  let unggulan=p.unggulan==="YA"?'<span class="unggulan">⭐UNGGULAN</span>':'';
+  let unggulan = p.unggulan==="YA"
+    ? '<span class="unggulan">⭐UNGGULAN</span>'
+    : '';
 
   html += `
   <div class="card" onclick='detail(${JSON.stringify(p)})'>
-    <img loading="lazy" src="${foto(p.foto)}" onerror="this.src='images/noimage.jpg'">
+    <img loading="lazy"
+         src="${foto(p.foto)}"
+         onerror="this.src='images/noimage.jpg'">
 
     <div class="card-body">
       <div class="brand">${p.brand||""}</div>
