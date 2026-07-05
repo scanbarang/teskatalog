@@ -351,10 +351,10 @@ async function loadProduk(){
   const cache=localStorage.getItem("ufo_cache");
 
   if(cache){
-    const c=JSON.parse(cache);
-    semuaProduk=c.produk||[];
-    settingData=c.setting||{};
-    bannerData=c.banner||[];
+    const c = JSON.parse(cache);
+semuaProduk = c.data?.produk || [];
+settingData = c.data?.setting || {};
+bannerData = c.data?.banner || [];
     renderSetting();
     renderBanner();
     buatBrandMenu(semuaProduk);
@@ -371,7 +371,10 @@ async function loadProduk(){
   const res=await fetch(API_URL);
   const data=await res.json();
 
-  localStorage.setItem("ufo_cache",JSON.stringify(data));
+  localStorage.setItem("ufo_cache_v1", JSON.stringify({
+  time: Date.now(),
+  data: data
+}));
 
   semuaProduk=data.produk||[];
   settingData=data.setting||{};
@@ -390,32 +393,34 @@ async function loadProduk(){
 }
 
 function tampilkan(data){
- produk.innerHTML="";
+ let html = "";
+
  data.forEach(p=>{
- let badge="";
- if(p.status==="BARU") badge='<span class="status baru">🆕BARU</span>';
- if(p.status==="PROMO") badge='<span class="status promo">🔥PROMO</span>';
- if(p.status==="BESTSELLER") badge='<span class="status best">⭐BESTSELLER</span>';
- let unggulan=p.unggulan==="YA"?'<span class="unggulan">⭐UNGGULAN</span>':'';
-produk.innerHTML+=`
-<div class="card" onclick='detail(${JSON.stringify(p)})'>
-  <img loading="lazy" src="${foto(p.foto)}" onerror="this.src='images/noimage.jpg'">
+  let badge="";
+  if(p.status==="BARU") badge='<span class="status baru">🆕BARU</span>';
+  if(p.status==="PROMO") badge='<span class="status promo">🔥PROMO</span>';
+  if(p.status==="BESTSELLER") badge='<span class="status best">⭐BESTSELLER</span>';
 
-  <div class="card-body">
+  let unggulan=p.unggulan==="YA"?'<span class="unggulan">⭐UNGGULAN</span>':'';
 
-    <div class="brand">${p.brand||""}</div>
+  html += `
+  <div class="card" onclick='detail(${JSON.stringify(p)})'>
+    <img loading="lazy" src="${foto(p.foto)}" onerror="this.src='images/noimage.jpg'">
 
-    <div class="tipe">${p.tipe||""}</div>
+    <div class="card-body">
+      <div class="brand">${p.brand||""}</div>
+      <div class="tipe">${p.tipe||""}</div>
 
-    <div class="badge-area">
-      ${badge}${unggulan}
+      <div class="badge-area">
+        ${badge}${unggulan}
+      </div>
+
+      <div class="harga">${rupiah(p.harga)}</div>
     </div>
-
-    <div class="harga">${rupiah(p.harga)}</div>
-
-  </div>
-</div>`;
+  </div>`;
  });
+
+ produk.innerHTML = html;
 }
 
 
@@ -614,14 +619,14 @@ function filterKategori(k, el = null) {
 
 /* Login otomatis jika sudah pernah login */
 
-if(localStorage.getItem("ufo_login")=="true"){
+window.onload = function(){
+  if(localStorage.getItem("ufo_login")=="true"){
+    const box = document.getElementById("loginBox");
+    if(box) box.style.display = "none";
 
-  document.getElementById("loginBox").style.display = "none";
-
-  loadProduk();
-
+    loadProduk();
+  }
 }
-
 </script>
   <footer class="footer">
   © 2026 UFO Kebonsari Malang 
