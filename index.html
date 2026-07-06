@@ -312,7 +312,14 @@ style="color:red;margin-top:10px;font-size:13px"></div>
   <button class="cat" onclick="filterKategori('ELEKTRONIK', this)">📺 Elektronik</button>
   <button class="cat" onclick="filterKategori('RUMAH TANGGA', this)">🍳 Rumah Tangga</button>
 </div>
-
+<div id="subKategoriBar" style="
+display:none;
+gap:10px;
+overflow-x:auto;
+padding:10px;
+background:#fff;
+white-space:nowrap;
+"></div>
 <div id="bannerArea"></div>
 
 <div id="produk" class="container"></div>
@@ -339,7 +346,8 @@ const API_URL="https://script.google.com/macros/s/AKfycbwIHn0J0auhFrSMSRE6vpJ7-9
 let semuaProduk=[];
 let settingData={};
 let bannerData=[];
-
+let kategoriAktif = "SEMUA";
+let subKategoriAktif = "SEMUA";
 const foto = f => {
   if (!f) return "images/noimage.jpg";
   return "images/" + f;
