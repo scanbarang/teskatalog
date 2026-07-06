@@ -387,6 +387,7 @@ tampilkan(semuaProduk);
 }));
 
   semuaProduk=data.produk||[];
+   console.log(semuaProduk);
   settingData=data.setting||{};
   bannerData=data.banner||[];
 
@@ -394,6 +395,7 @@ tampilkan(semuaProduk);
 renderBanner();
 buatBrandMenu(semuaProduk);
 buatKategori(semuaProduk);
+   console.log("Kategori:", [...new Set(semuaProduk.map(x=>x.kategori))]);
 tampilkan(semuaProduk);
   
 
