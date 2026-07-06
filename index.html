@@ -404,7 +404,82 @@ tampilkan(semuaProduk);
  }
 
 }
+function buatSubKategori(kategori){
 
+  const bar = document.getElementById("subKategoriBar");
+
+  if(!bar) return;
+
+  if(kategori==="SEMUA"){
+    bar.style.display="none";
+    bar.innerHTML="";
+    return;
+  }
+
+  const daftar = [
+    "SEMUA",
+    ...new Set(
+      semuaProduk
+        .filter(p =>
+          String(p.kategori||"").trim().toUpperCase() === kategori.toUpperCase()
+        )
+        .map(p => String(p.subKategori||"").trim())
+        .filter(Boolean)
+    )
+  ];
+
+  // kalau tidak ada sub kategori
+  if(daftar.length===1){
+    bar.style.display="none";
+    bar.innerHTML="";
+    return;
+  }
+
+  bar.style.display="flex";
+  bar.innerHTML="";
+
+  daftar.forEach((s,i)=>{
+
+    const btn=document.createElement("button");
+
+    btn.textContent = s==="SEMUA" ? "Semua" : s;
+
+    if(i===0){
+      btn.classList.add("active");
+    }
+
+    btn.onclick=function(){
+      filterSubKategori(kategori,s,this);
+    };
+
+    bar.appendChild(btn);
+
+  });
+
+}
+  function filterSubKategori(kategori, subKategori, el){
+
+  document
+    .querySelectorAll("#subKategoriBar button")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(el) el.classList.add("active");
+
+  let hasil = semuaProduk.filter(p =>
+    String(p.kategori||"").trim().toUpperCase() === kategori.toUpperCase()
+  );
+
+  if(subKategori !== "SEMUA"){
+
+    hasil = hasil.filter(p =>
+      String(p.subKategori||"").trim().toUpperCase() === subKategori.toUpperCase()
+    );
+
+  }
+
+  tampilkan(hasil);
+
+}
 function tampilkan(data){
  let html = "";
 
@@ -622,6 +697,7 @@ function filterKategori(k, el = null) {
   }
 
   // 4. tampilkan
+  buatSubKategori(k);
   tampilkan(hasil);
 } 
   function tutupDetail(){
