@@ -317,7 +317,7 @@ background:#fff;
 white-space:nowrap;
 ">
 </div>
-<div id="subKategoriBar" style="
+
 display:none;
 gap:10px;
 overflow-x:auto;
@@ -396,10 +396,11 @@ tampilkan(semuaProduk);
   settingData=data.setting||{};
   bannerData=data.banner||[];
 
-  renderSetting();
-  renderBanner();
-  buatBrandMenu(semuaProduk);
-  tampilkan(semuaProduk);
+ renderSetting();
+renderBanner();
+buatBrandMenu(semuaProduk);
+buatKategori(semuaProduk);
+tampilkan(semuaProduk);
   
 
  }catch(err){
