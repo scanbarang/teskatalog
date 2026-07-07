@@ -704,12 +704,47 @@ mSubKategori.innerHTML = p.subKategori || "-";
  .filter(Boolean)
 .map(x=>"<div>✔ "+x+"</div>")
  .join("");
-const related = semuaProduk
-  .filter(x =>
+// Produk terkait diprioritaskan:
+// 1. Brand + SubKategori sama
+// 2. SubKategori sama
+// 3. Kategori sama
+
+let related = [];
+
+// Prioritas 1
+related = semuaProduk.filter(x =>
+  x.tipe !== p.tipe &&
+  x.brand === p.brand &&
+  x.subKategori === p.subKategori
+);
+
+// Prioritas 2
+if (related.length < 4) {
+
+  const tambahan = semuaProduk.filter(x =>
     x.tipe !== p.tipe &&
-    x.subKategori === p.subKategori
-  )
-  .slice(0,4);
+    x.subKategori === p.subKategori &&
+    !related.includes(x)
+  );
+
+  related = related.concat(tambahan);
+
+}
+
+// Prioritas 3
+if (related.length < 4) {
+
+  const tambahan = semuaProduk.filter(x =>
+    x.tipe !== p.tipe &&
+    x.kategori === p.kategori &&
+    !related.includes(x)
+  );
+
+  related = related.concat(tambahan);
+
+}
+
+related = related.slice(0,4);
 
 mRelated.innerHTML = "";
 
