@@ -21,7 +21,27 @@
   width:100%;
   background:#0077c8;
 }
+#backToTop{
+  position:fixed;
+  right:20px;
+  bottom:95px;
+  width:50px;
+  height:50px;
+  border:none;
+  border-radius:50%;
+  background:#0d6efd;
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+  display:none;
+  z-index:9998;
+  transition:all .3s ease;
+}
 
+#backToTop:hover{
+  transform:translateY(-3px);
+}
 .header-banner img{
   width:100%;
   display:block;
@@ -233,6 +253,9 @@
 #sideMenu{position:fixed;left:-300px;top:0;width:300px;height:100%;background:#0077c8;color:#fff;z-index:9999;transition:.3s;overflow:auto}
 .menu-item{padding:14px 18px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.1)}
 #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998}
+  <button id="backToTop" title="Kembali ke Atas">
+  ↑
+</button>
 .floating-wa{position:fixed;right:20px;bottom:20px;width:60px;height:60px;background:#25D366;color:#fff;text-decoration:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;z-index:9999}
 .info-box{grid-column:1/-1;background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
   .footer{
@@ -965,6 +988,24 @@ window.addEventListener("load", function () {
     loadProduk();
   }
 
+});
+  const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "flex";
+    backToTop.style.alignItems = "center";
+    backToTop.style.justifyContent = "center";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 });
 </script>
   <footer class="footer">
