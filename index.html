@@ -147,8 +147,50 @@
   color:#fff;
 }
 .modal{display:none;position:fixed;inset:0;background:#fff;overflow:auto;z-index:9999}
-.modal-content{padding:20px}.modal img{width:100%;max-height:350px;object-fit:contain}
+.modal-content{
+  max-width:700px;
+  margin:auto;
+  padding:25px;
+}
+
+.modal img{
+  width:100%;
+  max-height:420px;
+  object-fit:contain;
+  border-radius:16px;
+  background:#fff;
+  margin-bottom:20px;
+}
 .close{font-size:30px;cursor:pointer;float:right}
+  .detail-box{
+  background:#f8fafc;
+  border-radius:12px;
+  padding:15px;
+  margin:15px 0;
+  border:1px solid #e5e7eb;
+}
+
+.detail-row{
+  display:flex;
+  justify-content:space-between;
+  margin:8px 0;
+  font-size:14px;
+}
+
+.detail-label{
+  color:#64748b;
+  font-weight:600;
+}
+
+.detail-value{
+  font-weight:700;
+  color:#111827;
+}
+
+#mSpek div{
+  padding:8px 0;
+  border-bottom:1px solid #eee;
+}
 .btn{display:block;text-align:center;color:#fff;text-decoration:none;padding:14px;border-radius:10px;margin-top:10px;border:none;width:100%;font-weight:700}
 .wa{background:#25D366}.share{background:#0077c8}.copy{background:#444}
 #sideMenu{position:fixed;left:-300px;top:0;width:300px;height:100%;background:#0077c8;color:#fff;z-index:9999;transition:.3s;overflow:auto}
