@@ -198,6 +198,37 @@
   background:#0077c8;
   color:#fff;
 } 
+  /* ===== SUB KATEGORI ===== */
+
+#subKategoriBar{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:10px;
+  background:#fff;
+  white-space:nowrap;
+}
+
+#subKategoriBar button{
+  flex:0 0 auto;
+  padding:10px 16px;
+  border:none;
+  border-radius:999px;
+  background:#f1f5f9;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+}
+
+#subKategoriBar button:hover{
+  background:#e2e8f0;
+}
+
+#subKategoriBar button.active{
+  background:#16a34a;
+  color:#fff;
+}
  .loading-spinner{
   display:none;
   position:fixed;
@@ -307,17 +338,7 @@ style="color:red;margin-top:10px;font-size:13px"></div>
   <!-- ===== KATEGORI FILTER ===== -->
 <div id="kategoriBar"></div>
 
-<div id="subKategoriBar"
-style="
-display:none;
-gap:10px;
-overflow-x:auto;
-padding:10px;
-background:#fff;
-white-space:nowrap;
-">
-</div>
-
+<div id="subKategoriBar"></div>
 
 <div id="bannerArea"></div>
 
