@@ -392,8 +392,29 @@ style="color:red;margin-top:10px;font-size:13px"></div>
 <img id="mFoto">
 <h2 id="mNama"></h2>
 <h3 id="mHarga"></h3>
-<div id="mKategori"></div>
-<div id="mSpek"></div>
+<div class="detail-box">
+
+  <div class="detail-row">
+    <div class="detail-label">Brand</div>
+    <div class="detail-value" id="mBrand"></div>
+  </div>
+
+  <div class="detail-row">
+    <div class="detail-label">Kategori</div>
+    <div class="detail-value" id="mKategori"></div>
+  </div>
+
+  <div class="detail-row">
+    <div class="detail-label">SubKategori</div>
+    <div class="detail-value" id="mSubKategori"></div>
+  </div>
+
+</div>
+
+<div class="detail-box">
+  <h3 style="margin-top:0">Spesifikasi</h3>
+  <div id="mSpek"></div>
+</div>
 
 <button id="shareBtn" class="btn share">
   📤 Bagikan Produk
@@ -626,7 +647,9 @@ function detail(p){
  * Harga dapat berubah sewaktu-waktu. Silakan hubungi kami untuk informasi harga terbaru.
  </div>`;
 
- mKategori.innerHTML="Kategori : "+(p.kategori||"-");
+mBrand.innerHTML = p.brand || "-";
+mKategori.innerHTML = p.kategori || "-";
+mSubKategori.innerHTML = p.subKategori || "-";
  mSpek.innerHTML=[p.spek1,p.spek2,p.spek3,p.spek4,p.spek5]
  .filter(Boolean)
  .map(x=>"<div>• "+x+"</div>")
