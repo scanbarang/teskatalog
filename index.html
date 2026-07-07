@@ -188,6 +188,25 @@
 }
 
 #mSpek div{
+  #mRelated{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.related-item{
+  padding:12px;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.2s;
+  background:#fff;
+}
+
+.related-item:hover{
+  background:#f8fafc;
+  transform:translateX(4px);
+}
   /* ===== DETAIL PRODUK ===== */
 
 #mNama{
@@ -433,7 +452,13 @@ style="color:red;margin-top:10px;font-size:13px"></div>
   <h3 style="margin-top:0">Spesifikasi</h3>
   <div id="mSpek"></div>
 </div>
+<div class="detail-box">
 
+<h3 style="margin-top:0">Produk Terkait</h3>
+
+<div id="mRelated"></div>
+
+</div>
 <button id="shareBtn" class="btn share">
   📤 Bagikan Produk
 </button>
@@ -679,7 +704,24 @@ mSubKategori.innerHTML = p.subKategori || "-";
  .filter(Boolean)
 .map(x=>"<div>✔ "+x+"</div>")
  .join("");
+const related = semuaProduk
+  .filter(x =>
+    x.tipe !== p.tipe &&
+    x.subKategori === p.subKategori
+  )
+  .slice(0,4);
 
+mRelated.innerHTML = "";
+
+related.forEach(item=>{
+
+  mRelated.innerHTML += `
+  <div class="related-item"
+       onclick='detail(${JSON.stringify(item)})'>
+       📦 ${item.brand} ${item.tipe}
+  </div>`;
+
+});
  const url =
 window.location.origin +
 window.location.pathname +
