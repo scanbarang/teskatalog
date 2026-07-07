@@ -188,6 +188,30 @@
 }
 
 #mSpek div{
+  /* ===== DETAIL PRODUK ===== */
+
+#mNama{
+  font-size:28px;
+  font-weight:700;
+  color:#1f2937;
+  margin:15px 0 10px;
+  line-height:1.3;
+}
+
+#mHarga{
+  color:#dc2626;
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+#mHarga small{
+  display:block;
+  color:#6b7280;
+  font-size:12px;
+  font-weight:400;
+  margin-top:8px;
+}
   padding:8px 0;
   border-bottom:1px solid #eee;
 }
@@ -641,11 +665,12 @@ function detail(p){
  mFoto.src=foto(p.foto);
  mNama.innerHTML=(p.brand||"")+" "+(p.tipe||"");
 
- mHarga.innerHTML=`
- ${rupiah(p.harga)}
- <div style="font-size:11px;color:#888;font-weight:400;margin-top:6px">
- * Harga dapat berubah sewaktu-waktu. Silakan hubungi kami untuk informasi harga terbaru.
- </div>`;
+mHarga.innerHTML = `
+${rupiah(p.harga)}
+<small>
+* Harga dapat berubah sewaktu-waktu.<br>
+Silakan hubungi kami untuk informasi harga terbaru.
+</small>`;
 
 mBrand.innerHTML = p.brand || "-";
 mKategori.innerHTML = p.kategori || "-";
