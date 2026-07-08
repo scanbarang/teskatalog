@@ -675,7 +675,6 @@ function buatSubKategori(kategori){
   }
 
   const daftar = [
-    "SEMUA",
     ...new Set(
       semuaProduk
         .filter(p =>
@@ -687,7 +686,7 @@ function buatSubKategori(kategori){
   ];
 
   // kalau tidak ada sub kategori
-  if(daftar.length===1){
+  if(daftar.length===0){
     bar.style.display="none";
     bar.innerHTML="";
     return;
@@ -700,14 +699,23 @@ function buatSubKategori(kategori){
 
     const btn=document.createElement("button");
 
-    btn.textContent = s==="SEMUA" ? "Semua" : s;
+    btn.textContent = s;
 
     if(i===0){
       btn.classList.add("active");
+      filterSubKategori(kategori,s);
     }
 
     btn.onclick=function(){
-      filterSubKategori(kategori,s,this);
+
+      document
+        .querySelectorAll("#subKategoriBar button")
+        .forEach(x=>x.classList.remove("active"));
+
+      this.classList.add("active");
+
+      filterSubKategori(kategori,s);
+
     };
 
     bar.appendChild(btn);
