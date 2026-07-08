@@ -749,50 +749,59 @@ function buatSubKategori(kategori){
 
 }
 function tampilkan(data){
- let html = "";
 
- data.forEach(p=>{
-  let badge="";
-  if(p.status==="BARU") badge='<span class="status baru">🆕BARU</span>';
-  if(p.status==="PROMO") badge='<span class="status promo">🔥PROMO</span>';
-  if(p.status==="BESTSELLER") badge='<span class="status best">⭐BESTSELLER</span>';
+  let html = "";
 
-  let unggulan = p.unggulan==="YA"
-    ? '<span class="unggulan">⭐UNGGULAN</span>'
-    : '';
+  data.forEach(p=>{
 
-  html += `
-  <div class="card" onclick='detail(${JSON.stringify(p)})'>
-    <img loading="lazy"
-         src="${foto(p.foto)}"
-         onerror="this.onerror=null;this.src='images/noimage.jpg'">
+    let badge = "";
 
-   <div class="card-body">
+    if(p.status==="BARU") badge='<span class="status baru">🆕BARU</span>';
+    if(p.status==="PROMO") badge='<span class="status promo">🔥PROMO</span>';
+    if(p.status==="BESTSELLER") badge='<span class="status best">⭐BESTSELLER</span>';
 
-  <div class="brand">${p.brand||""}</div>
+    let unggulan =
+      p.unggulan==="YA"
+      ? '<span class="unggulan">⭐UNGGULAN</span>'
+      : '';
 
-  <div class="tipe">${p.tipe||""}</div>
+    html += `
+    <div class="card" onclick='detail(${JSON.stringify(p)})'>
 
-  <div class="badge-area">
-    ${badge}${unggulan}
-  </div>
+      <img
+        loading="lazy"
+        src="${foto(p.foto)}"
+        onerror="this.onerror=null;this.src='images/noimage.jpg'">
 
-  <div style="
-  color:#0077c8;
-  font-size:14px;
-  font-weight:700;
-  margin-top:10px;
-  ">
-  ➡️ Lihat Detail
-  </div>
+      <div class="card-body">
 
-</div>
-</div>`;
+        <div class="brand">${p.brand||""}</div>
 
- produk.innerHTML = html;
+        <div class="tipe">${p.tipe||""}</div>
+
+        <div class="badge-area">
+          ${badge}${unggulan}
+        </div>
+
+        <div style="
+          color:#0077c8;
+          font-size:14px;
+          font-weight:700;
+          margin-top:10px;
+        ">
+          ➡️ Lihat Detail
+        </div>
+
+      </div>
+
+    </div>
+    `;
+
+  });
+
+  produk.innerHTML = html;
+
 }
-
-
 function showPromo(){
 
  let html = `
