@@ -914,14 +914,6 @@ search.addEventListener("keyup",function(){
 
 function buatBrandMenu(data){
  const brand=[...new Set(data.map(x=>x.brand).filter(Boolean))].sort();
-  <div style="
-padding:10px 18px;
-font-size:12px;
-opacity:.8;
-font-weight:bold;
-">
-MENU
-</div>
  brandList.innerHTML='<div class="menu-item" onclick="showHome()">Semua Brand</div>';
  brand.forEach(b=>brandList.innerHTML+=`<div class="menu-item" onclick="tampilkan(semuaProduk.filter(x=>x.brand==='${b}'));closeMenu()">${b}</div>`);
 }
