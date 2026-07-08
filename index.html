@@ -704,22 +704,14 @@ function buatSubKategori(kategori){
     btn.textContent = s;
 
     if(i===0){
-      btn.classList.add("active");
-      filterSubKategori(kategori,s);
-    }
+  filterSubKategori(kategori,s,btn);
+}
 
-    btn.onclick=function(){
+    btn.onclick = function(){
 
-      document
-        .querySelectorAll("#subKategoriBar button")
-        .forEach(x=>x.classList.remove("active"));
+  filterSubKategori(kategori, s, this);
 
-      this.classList.add("active");
-
-      filterSubKategori(kategori,s);
-
-    };
-
+};
     bar.appendChild(btn);
 
   });
