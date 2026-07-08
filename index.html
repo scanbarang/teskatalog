@@ -601,6 +601,7 @@ const API_URL="https://script.google.com/macros/s/AKfycbwIHn0J0auhFrSMSRE6vpJ7-9
 let semuaProduk=[];
 let settingData={};
 let bannerData=[];
+ let promoData=[]; 
 let kategoriAktif = "SEMUA";
 let subKategoriAktif = "SEMUA";
 const foto = f => {
@@ -620,6 +621,7 @@ const cache = localStorage.getItem("ufo_cache_v1");
 semuaProduk = c.data?.produk || [];
 settingData = c.data?.setting || {};
 bannerData = c.data?.banner || [];
+    promoData = c.data?.promo || [];
     renderSetting();
     renderBanner();
     buatBrandMenu(semuaProduk);
@@ -642,11 +644,11 @@ tampilkan(semuaProduk);
   data: data
 }));
 
-  semuaProduk=data.produk||[];
-   console.log(semuaProduk);
-  settingData=data.setting||{};
-  bannerData=data.banner||[];
-
+ semuaProduk = data.produk || [];
+settingData = data.setting || {};
+bannerData = data.banner || [];
+promoData = data.promo || [];
+console.log("Promo:", promoData);
  renderSetting();
 renderBanner();
 buatBrandMenu(semuaProduk);
