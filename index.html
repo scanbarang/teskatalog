@@ -767,43 +767,27 @@ function tampilkan(data){
          src="${foto(p.foto)}"
          onerror="this.onerror=null;this.src='images/noimage.jpg'">
 
-    <div class="card-body">
-      <div class="brand">${p.brand||""}</div>
-      <div class="tipe">${p.tipe||""}</div>
+   <div class="card-body">
 
-      <div class="badge-area">
-        ${badge}${unggulan}
-      </div>
+  <div class="brand">${p.brand||""}</div>
 
- <div style="
-display:inline-flex;
-align-items:center;
-justify-content:center;
-background:#16a34a;
-color:#fff;
-padding:8px 14px;
-border-radius:999px;
-font-size:13px;
-font-weight:700;
-margin-top:10px;
-width:fit-content;
-">
-<div class="badge-area">
-  ${badge}${unggulan}
-</div>
+  <div class="tipe">${p.tipe||""}</div>
 
-<div style="
-color:#0077c8;
-font-size:14px;
-font-weight:700;
-margin-top:10px;
-">
-➡️ Lihat Detail
-</div>
+  <div class="badge-area">
+    ${badge}${unggulan}
+  </div>
+
+  <div style="
+  color:#0077c8;
+  font-size:14px;
+  font-weight:700;
+  margin-top:10px;
+  ">
+  ➡️ Lihat Detail
+  </div>
 
 </div>
 </div>`;
- });
 
  produk.innerHTML = html;
 }
