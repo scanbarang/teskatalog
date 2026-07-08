@@ -601,7 +601,8 @@ const API_URL="https://script.google.com/macros/s/AKfycbwIHn0J0auhFrSMSRE6vpJ7-9
 let semuaProduk=[];
 let settingData={};
 let bannerData=[];
- let promoData=[]; 
+ let promoData=[];
+  let produkAktif = null;
 let kategoriAktif = "SEMUA";
 let subKategoriAktif = "SEMUA";
 const foto = f => {
@@ -623,6 +624,7 @@ settingData = c.data?.setting || {};
 bannerData = c.data?.banner || [];
     promoData = c.data?.promo || [];
     renderSetting();
+    updateFloatingWA();
     renderBanner();
     buatBrandMenu(semuaProduk);
 buatKategori(semuaProduk);
@@ -870,6 +872,8 @@ function showHome(){tampilkan(semuaProduk);closeMenu();}
 function showUnggulan(){tampilkan(semuaProduk.filter(x=>x.unggulan==="YA"));closeMenu();}
 
 function detail(p){
+  produkAktif = p;
+  updateFloatingWA();
  modal.style.display="block";
  history.replaceState(
   {},
@@ -1086,7 +1090,8 @@ function filterKategori(k, el = null) {
   function tutupDetail(){
 
   modal.style.display = "none";
-
+produkAktif = null;
+updateFloatingWA();
   history.replaceState(
     {},
     "",
@@ -1163,6 +1168,46 @@ backToTop.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+  function updateFloatingWA(){
+
+  const wa = settingData.wa || "6289524391002";
+
+  let pesan = "";
+
+  if(produkAktif){
+
+    pesan =
+`Halo Admin UFO Kebonsari.
+
+Saya ingin menanyakan produk berikut:
+
+Brand : ${produkAktif.brand}
+Tipe : ${produkAktif.tipe}
+
+Mohon informasi harga dan stoknya.
+
+Terima kasih.`;
+
+  }else{
+
+    pesan =
+`Halo Admin UFO Kebonsari.
+
+Saya ingin bertanya mengenai produk yang ada di katalog.
+
+Mohon informasi harga dan stoknya.
+
+Terima kasih.`;
+
+  }
+
+  floatingWA.href =
+    "https://wa.me/" +
+    wa +
+    "?text=" +
+    encodeURIComponent(pesan);
+
+}
 </script>
   <footer class="footer">
   © 2026 UFO Kebonsari Malang 
