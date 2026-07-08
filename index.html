@@ -775,7 +775,9 @@ function tampilkan(data){
         ${badge}${unggulan}
       </div>
 
-      <div class="harga">${rupiah(p.harga)}</div>
+      <d<div class="harga" style="color:#16a34a;">
+💬 Tanya Harga
+</div>iv class="harga">${rupiah(p.harga)}</div>
     </div>
   </div>`;
  });
@@ -883,18 +885,25 @@ function detail(p){
  mFoto.src=foto(p.foto);
  mNama.innerHTML=(p.brand||"")+" "+(p.tipe||"");
 
-mHarga.innerHTML = `
-<div>${rupiah(p.harga)}</div>
+mHarga.innerHTML=`
 <div style="
-    font-size:12px;
-    color:#6b7280;
-    font-weight:400;
-    margin-top:8px;
-    line-height:1.5;
+color:#16a34a;
+font-size:22px;
+font-weight:700;
 ">
-* Harga dapat berubah sewaktu-waktu.<br>
-Silakan hubungi kami untuk informasi harga terbaru.
-</div>`;
+💬 Hubungi Admin
+</div>
+
+<div style="
+font-size:13px;
+color:#666;
+margin-top:8px;
+line-height:1.6;
+">
+Harga tidak ditampilkan pada katalog ini.<br>
+Silakan hubungi kami untuk mendapatkan informasi harga, stok, dan promo terbaru.
+</div>
+`;
 
 mBrand.innerHTML = p.brand || "-";
 mKategori.innerHTML = p.kategori || "-";
