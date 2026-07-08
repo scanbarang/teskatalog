@@ -776,25 +776,81 @@ function tampilkan(data){
 
 function showPromo(){
 
- let html=`
+ let html = `
  <div class="info-box">
- <h2>🔥 Promo Bulan Ini</h2>`;
 
- bannerData.forEach(b=>{
+ <h2>🔥 Promo Bulan Ini</h2>
+ `;
+
+ if(promoData.length==0){
+
    html += `
-   <img src="${b.gambar}"
-        style="width:100%;
-        margin-bottom:15px;
-        border-radius:12px;">`;
- });
+   <div style="
+   text-align:center;
+   padding:30px;
+   color:#777;
+   ">
+   Belum ada promo bulan ini.
+   </div>
+   `;
 
- html += `
- <p style="white-space:pre-line">
- ${settingData.promo||"-"}
- </p></div>`;
+ }else{
 
- produk.innerHTML=html;
+   promoData.forEach(p=>{
+
+     html += `
+
+     <div style="
+     margin-bottom:25px;
+     ">
+
+     <img
+       src="${p.gambar}"
+       alt="${p.judul}"
+       style="
+       width:100%;
+       border-radius:16px;
+       box-shadow:0 4px 12px rgba(0,0,0,.12);
+       cursor:pointer;
+       "
+     >
+
+     <div style="
+     margin-top:10px;
+     font-size:18px;
+     font-weight:700;
+     ">
+     ${p.judul}
+     </div>
+
+     </div>
+
+     `;
+
+   });
+
+ }
+
+ if(settingData.promo){
+
+   html += `
+   <div style="
+   margin-top:20px;
+   white-space:pre-line;
+   line-height:1.7;
+   ">
+   ${settingData.promo}
+   </div>
+   `;
+
+ }
+
+ html += `</div>`;
+
+ produk.innerHTML = html;
+
  closeMenu();
+
 }
 
 function showTentang(){
